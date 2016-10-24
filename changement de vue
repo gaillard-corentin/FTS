@@ -1,0 +1,45 @@
+using UnityEngine;
+using System.Collections;
+
+public class changementdevue : MonoBehaviour {
+
+	public Camera Maincamera;
+	public Camera TPScamera;
+
+		
+	void Start() {
+		Maincamera.enabled = true;
+		TPScamera.enabled = false;
+	}
+	void Update() {
+		if (Input.GetKeyUp(KeyCode.Return)) {
+			Maincamera.enabled = !Maincamera.enabled;
+			TPScamera.enabled = !TPScamera.enabled;
+		}
+		/*bool Maincamera = true;
+	bool TPScam = false;
+	
+	
+	// Use this for initialization
+	void Start () {
+		bool Maincamera=true;
+		bool tpscam=false;
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if(Input.GetKeyDown("n"))
+		{	
+			Maincamera = false;
+			TPScam = true;
+		}
+		if(Input.GetKey(KeyCode.Space))
+		{
+			Maincamera = true;
+			TPScam = false;
+		}
+		
+	}*/
+}
+
