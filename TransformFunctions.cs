@@ -19,38 +19,23 @@
 
 		float rotationX = 0f;
 		float rotationY = 0f;
-
-
-
-		Quaternion rotationplayer;
-		Quaternion rotationcamera;
+	
 
 		public Camera cam  ;
-		CharacterController charac ;
+		
 
-		Vector3 mov = Vector3.zero;
-
-		void Start()
-		{
-		charac = gameObject.GetComponent<CharacterController>();
-		rotationplayer = transform.localRotation;
-		rotationcamera = cam.transform.localRotation;
-
-
-
-		}
+		
+		
 
 		void Update ()
 		{
 			//Rotationcamera
-			rotationX = Input.GetAxis ("MouseX") * sensiX;
+			rotationX = Input.GetAxis ("MouseX") * sensiX; 
 			rotationY = Input.GetAxis ("MouseY") * sensiY;
 			rotationX = Mathf.Clamp (rotationX, minX, maxX);
-			rotationY = Mathf.Clamp (rotationY, minY, maxY);
-			Quaternion xrot = Quaternion.AngleAxis (rotationX, Vector3.up);
-			Quaternion yrot = Quaternion.AngleAxis (rotationY, Vector3.right);
-			transform.localRotation = rotationplayer * xrot;
-			cam.transform.localRotation = rotationcamera * yrot;
+			rotationY = Mathf.Clamp (rotationY, minY, maxY);			
+			transform.Rotate (0, rotationX, 0);
+			cam.transform.Rotate (-rotationY, 0, 0);
 			
 			//Deplacement
 			if(Input.GetKey(KeyCode.Z))
