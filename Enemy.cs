@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
     {
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        
+        Quaternion targetrotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, Time.deltaTime * 5);
 
         if (Vector3.Distance(transform.position,target.position) <= 0.4f)
         {
