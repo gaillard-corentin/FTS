@@ -9,12 +9,16 @@ public class Shoot : MonoBehaviour {
 	float cooldown = 0f;
 	public int munition = 15;
 	public int maxmun = 15;
+	public int reserve = 50;
+	public int maxreserve = 50;
+	bool authorized = true;
 
+	public bool Autho { get { return authorized; } set { authorized = value; } } 
 
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButton ("Fire1") && Time.time > cooldown) {
+		if (Input.GetButton ("Fire1") && Time.time > cooldown && authorized) {
 
 			if (munition >0)
 
@@ -36,13 +40,16 @@ public class Shoot : MonoBehaviour {
 
 		if (Input.GetKeyDown ("r")) {
 
+			reserve -= maxmun - munition;
 			munition += maxmun - munition;
+
 		}
 
 	}
 
 
 	void OnGUI() {
-		GUI.Box (new Rect (10, 10, 130, 25), "Munition : " + munition);
+		GUI.Box (new Rect (Screen.width - 140, Screen.height -30, 130, 25), "Munition : " + munition + " / " + reserve);
+
 	}
 }
